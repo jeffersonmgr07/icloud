@@ -1,105 +1,66 @@
 // ===============================
 // CONFIGURACIÓN
 // ===============================
-
-// 🔴 IMPORTANTE:
-// Pega aquí la URL de tu Web App de Google Apps Script
-// Ejemplo: https://script.google.com/macros/s/AKfycbxxxxxxxxxxxx/exec
-const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec";
-
+const SHEETS_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec";
 
 // ===============================
 // ELEMENTOS
 // ===============================
-
 const loginModal = document.getElementById("loginModal");
 const openLoginBtn = document.getElementById("openLoginBtn");
 const goLoginIcon = document.getElementById("goLogin");
 const demoLoginForm = document.getElementById("demoLoginForm");
 
-
 // ===============================
 // ABRIR MODAL
 // ===============================
-
 function openLoginModal() {
-  if (loginModal && typeof loginModal.showModal === "function") {
-    loginModal.showModal();
-  } else {
-    // Fallback si <dialog> no es soportado
-    window.location.href = "form.html";
-  }
+  if (loginModal?.showModal) loginModal.showModal();
+  else window.location.href = "form.html";
 }
 
-if (openLoginBtn) {
-  openLoginBtn.addEventListener("click", openLoginModal);
-}
-
-if (goLoginIcon) {
-  goLoginIcon.addEventListener("click", openLoginModal);
-}
-
+openLoginBtn?.addEventListener("click", openLoginModal);
+goLoginIcon?.addEventListener("click", openLoginModal);
 
 // ===============================
 // ENVÍO DEL FORMULARIO DEMO
 // ===============================
+demoLoginForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-if (demoLoginForm) {
-  demoLoginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const demoUser = document.getElementById("demoUser").value.trim();
+  const demoNick = document.getElementById("demoNick").value.trim();
 
-    const demoUser = document.getElementById("demoUser").value.trim();
-    const demoNick = document.getElementById("demoNick").value.trim();
+  if (!demoUser || !demoNick) {
+    alert("Completa los campos.");
+    return;
+  }
 
-    if (!demoUser || !demoNick) {
-      alert("Completa los campos.");
-      return;
+  // Guardar sesión local (demo)
+  const session = { demoUser, demoNick, ts: new Date().toISOString() };
+  localStorage.setItem("icss_demo_session", JSON.stringify(session));
+
+  // Enviar a Google Sheets (form-urlencoded para evitar preflight CORS)
+  if (SHEETS_ENDPOINT) {
+    try {
+      const body = new URLSearchParams({
+        demoUser,
+        demoNick,
+        userAgent: navigator.userAgent
+      });
+
+      const res = await fetch(SHEETS_ENDPOINT, {
+        method: "POST",
+        body
+      });
+
+      console.log("POST enviado. status:", res.status);
+    } catch (error) {
+      console.warn("No se pudo enviar a Google Sheets:", error);
     }
+  }
 
-    // ===============================
-    // GUARDAR SESIÓN LOCAL (DEMO)
-    // ===============================
-    const session = {
-      demoUser,
-      demoNick,
-      ts: new Date().toISOString()
-    };
-
-    localStorage.setItem("icss_demo_session", JSON.stringify(session));
-
-    // ===============================
-    // ENVIAR A GOOGLE SHEETS
-    // ===============================
-    if (SHEETS_ENDPOINT && SHEETS_ENDPOINT !== "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec") {
-      try {
-        await fetch(SHEETS_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            demoUser: demoUser,
-            demoNick: demoNick,
-            userAgent: navigator.userAgent
-          })
-        });
-
-        console.log("Datos enviados a Google Sheets correctamente.");
-
-      } catch (error) {
-        console.warn("No se pudo enviar a Google Sheets:", error);
-      }
-    } else {
-      console.warn("No has configurado SHEETS_ENDPOINT.");
-    }
-
-    // ===============================
-    // CERRAR MODAL Y REDIRIGIR
-    // ===============================
-    if (loginModal) {
-      loginModal.close();
-    }
-
-    window.location.href = "form.html";
-  });
-}
+  loginModal?.close();
+  window.location.href = "form.html";
+});
