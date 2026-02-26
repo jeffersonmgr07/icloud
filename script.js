@@ -1,8 +1,9 @@
 // ===============================
 // CONFIGURACIÓN
 // ===============================
+// Pega aquí la URL /exec de tu Web App (Apps Script)
 const SHEETS_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec";
+  "https://script.google.com/macros/s/AKfycbzqmJ8usq5bz2C8cQzln4FxDqZkRl5XRXFzdLUcR8qd4YGWLdzVxCXej02wgzE0R9di/exec";
 
 // ===============================
 // ELEMENTOS
@@ -24,7 +25,7 @@ openLoginBtn?.addEventListener("click", openLoginModal);
 goLoginIcon?.addEventListener("click", openLoginModal);
 
 // ===============================
-// ENVÍO DEL FORMULARIO DEMO
+// SUBMIT: GUARDAR + ENVIAR + REDIRIGIR
 // ===============================
 demoLoginForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -37,30 +38,32 @@ demoLoginForm?.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Guardar sesión local (demo)
+  // 1) Guardar sesión local (demo)
   const session = { demoUser, demoNick, ts: new Date().toISOString() };
   localStorage.setItem("icss_demo_session", JSON.stringify(session));
 
-  // Enviar a Google Sheets (form-urlencoded para evitar preflight CORS)
-  if (SHEETS_ENDPOINT) {
-    try {
-      const body = new URLSearchParams({
-        demoUser,
-        demoNick,
-        userAgent: navigator.userAgent
-      });
+  // 2) Enviar a Google Sheets (SIN JSON para evitar CORS preflight)
+  //    En Apps Script, esto se recibe como e.parameter
+  try {
+    const body = new URLSearchParams({
+      demoUser,
+      demoNick,
+      userAgent: navigator.userAgent
+    });
 
-      const res = await fetch(SHEETS_ENDPOINT, {
-        method: "POST",
-        body
-      });
+    // Nota: aunque la respuesta pueda estar limitada por CORS,
+    // igual se registra en Sheets si el POST llegó.
+    const res = await fetch(SHEETS_ENDPOINT, {
+      method: "POST",
+      body
+    });
 
-      console.log("POST enviado. status:", res.status);
-    } catch (error) {
-      console.warn("No se pudo enviar a Google Sheets:", error);
-    }
+    console.log("POST enviado. status:", res.status);
+  } catch (err) {
+    console.warn("No se pudo enviar a Google Sheets:", err);
   }
 
+  // 3) Cerrar y redirigir
   loginModal?.close();
   window.location.href = "form.html";
 });
