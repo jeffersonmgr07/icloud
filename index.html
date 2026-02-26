@@ -6,10 +6,10 @@
   <title>iCloud Secure Services</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="dark">
   <header class="nav">
-    <div class="nav-left" aria-label="Inicio">
-      <span class="mark" aria-hidden="true"></span>
+    <div class="nav-left">
+      <img class="logo" src="img/logo1.png" alt="iCloud Secure Services" />
     </div>
 
     <nav class="nav-center" aria-label="Navegación">
@@ -19,8 +19,12 @@
     </nav>
 
     <div class="nav-right">
-      <button class="icon" aria-label="Buscar">⌕</button>
-      <button class="icon" id="openLogin" aria-label="Iniciar sesión">⎆</button>
+      <button class="icon big" id="goLogin" aria-label="Iniciar sesión">
+        <!-- user icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a4.2 4.2 0 1 0-4.2-4.2A4.2 4.2 0 0 0 12 12Zm0 2c-4.5 0-8 2.3-8 5.2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1C20 16.3 16.5 14 12 14Z"/>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -29,71 +33,77 @@
       <h1 class="headline">iCloud Secure Services</h1>
       <p class="subhead">Protección anual para tu iPhone.</p>
 
-      <div class="cta-row">
-        <a class="link" href="#learn">Conocer más <span aria-hidden="true">›</span></a>
-        <button class="link-btn" id="openLogin2">Iniciar sesión <span aria-hidden="true">›</span></button>
+      <p class="promo-text">Si tienes un código de descuento inicia sesión para aplicar.</p>
+
+      <div class="price-row" id="pricing">
+        <span class="price-old">US$ 99.90 / año</span>
       </div>
 
-      <p class="note">
-        US$ 99.90 / año · Código promocional: 1 año gratis (si aplica)
-      </p>
+      <div class="cta-row">
+        <a class="btn-primary" href="form.html">Iniciar sesión <span aria-hidden="true">›</span></a>
+      </div>
 
       <div class="benefits" id="benefits">
-        <div class="benefit">
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">
+            <!-- shield/impact -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 6a1 1 0 0 0-1 1v3.2l-1.6 1.6a1 1 0 1 0 1.4 1.4l1.9-1.9A1 1 0 0 0 13 13V9a1 1 0 0 0-1-1Z"/>
+            </svg>
+          </div>
           <div class="label">Golpes o caídas</div>
           <div class="value">70% dto. en tu próximo iPhone (entregando el dañado).</div>
-        </div>
-        <div class="benefit">
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">
+            <!-- location/alert -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.2A2.2 2.2 0 1 1 14.2 9 2.2 2.2 0 0 1 12 11.2Z"/>
+            </svg>
+          </div>
           <div class="label">Extravío o sustracción</div>
           <div class="value">50% dto. en tu próximo iPhone.</div>
-        </div>
-        <div class="benefit">
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">
+            <!-- swap/refresh -->
+            <svg viewBox="0 0 24 24">
+              <path d="M7 7h11l-1.8-1.8A1 1 0 1 1 17.6 3.8l3.5 3.5a1 1 0 0 1 0 1.4l-3.5 3.5A1 1 0 1 1 16.2 10.6L18 9H7a4 4 0 0 0 0 8h2a1 1 0 1 1 0 2H7A6 6 0 0 1 7 7Zm8 8H4l1.8 1.8a1 1 0 0 1-1.4 1.4L.9 14.7a1 1 0 0 1 0-1.4l3.5-3.5A1 1 0 0 1 5.8 11L4 13h11a4 4 0 0 0 0-8h-2a1 1 0 1 1 0-2h2a6 6 0 0 1 0 12Z"/>
+            </svg>
+          </div>
           <div class="label">Falla de fábrica</div>
           <div class="value">100% dto. en reposición.</div>
-        </div>
+        </article>
       </div>
 
-      <div class="disclaimer" role="note">
-        Demo de portafolio. No afiliado a Apple. No ingreses credenciales reales.
-      </div>
+      <figure class="hero-image">
+        <img src="img/imagen1.jpg" alt="iPhone protegido con iCloud Secure Services" />
+      </figure>
+
+      <footer class="apple-footer" id="support">
+        <div class="foot-top">
+          <p class="foot-note">
+            Demo de portafolio. No afiliado a Apple. No ingreses información sensible real.
+          </p>
+        </div>
+
+        <div class="foot-links">
+          <a href="#">Estado del sistema</a>
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos y condiciones</a>
+          <a href="#">Soporte</a>
+        </div>
+
+        <div class="foot-bottom">
+          <span>Copyright © 2026 iCloud Secure Services. Todos los derechos reservados.</span>
+          <span class="dot">•</span>
+          <span>Perú</span>
+        </div>
+      </footer>
     </section>
   </main>
-
-  <!-- Modal Login -->
-  <dialog class="modal" id="loginModal" aria-label="Inicio de sesión">
-    <form method="dialog" class="modal-card" id="loginForm">
-      <div class="modal-top">
-        <div class="modal-title">Iniciar sesión</div>
-        <button class="close" value="cancel" aria-label="Cerrar">×</button>
-      </div>
-
-      <label class="field">
-        <span>Correo o número</span>
-        <input id="user" name="user" autocomplete="username" placeholder="correo@ejemplo.com" required />
-      </label>
-
-      <label class="field">
-        <span>Contraseña</span>
-        <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="••••••••" required />
-      </label>
-
-      <label class="field">
-        <span>Código promocional (opcional)</span>
-        <input id="promo" name="promo" placeholder="EJ: FREEYEAR2026" />
-      </label>
-
-      <label class="check">
-        <input id="remember" type="checkbox" />
-        <span>Mantener sesión iniciada (demo)</span>
-      </label>
-
-      <button class="primary" type="submit">Continuar</button>
-
-      <p class="fineprint">
-        * Esto es una demo. No se almacenan contraseñas.
-      </p>
-    </form>
-  </dialog>
 
   <script src="script.js"></script>
 </body>
