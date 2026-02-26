@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registro de equipo — iCloud Secure Services</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <header class="nav">
+    <div class="nav-left">
+      <a href="index.html" aria-label="Volver al inicio">
+        <img class="logo" src="img/logo1.png" alt="iCloud Secure Services" />
+      </a>
+    </div>
+
+    <nav class="nav-center" aria-label="Navegación">
+      <a href="index.html#benefits">Servicio</a>
+      <a href="index.html#pricing">Precio</a>
+      <a href="index.html#support">Soporte</a>
+    </nav>
+
+    <div class="nav-right"></div>
+  </header>
+
+  <main class="hero">
+    <section class="hero-inner" style="text-align:left;">
+      <h1 class="headline" style="font-size: clamp(28px, 4vw, 44px);">Registro del equipo</h1>
+      <p class="subhead" style="margin-top:10px;">Completa los datos para evaluar tu cobertura.</p>
+
+      <form id="claimForm" class="form-panel">
+        <div class="grid2">
+          <label class="field">
+            <span>Nro Serie del iPhone</span>
+            <input name="serial" placeholder="Ej: F2L..." required />
+          </label>
+
+          <label class="field">
+            <span>Modelo</span>
+            <select name="model" required>
+              <option value="" selected disabled>Seleccionar</option>
+              <option>iPhone 15 Pro Max</option>
+              <option>iPhone 15 Pro</option>
+              <option>iPhone 15</option>
+              <option>iPhone 14 Pro Max</option>
+              <option>iPhone 14 Pro</option>
+              <option>iPhone 14</option>
+              <option>iPhone 13</option>
+              <option>iPhone 12</option>
+              <option>iPhone 11</option>
+              <option>Otro</option>
+            </select>
+          </label>
+        </div>
+
+        <h2 class="section-title">Datos del usuario</h2>
+        <div class="grid2">
+          <label class="field">
+            <span>Nombres</span>
+            <input name="user_names" required />
+          </label>
+          <label class="field">
+            <span>Apellidos</span>
+            <input name="user_lastnames" required />
+          </label>
+          <label class="field">
+            <span>DNI</span>
+            <div class="dni-row">
+              <select class="country" disabled>
+                <option selected>🇵🇪 PE</option>
+              </select>
+              <input name="user_dni" inputmode="numeric" placeholder="8 dígitos" required />
+            </div>
+          </label>
+          <label class="field">
+            <span>Dirección</span>
+            <input name="user_address" required />
+          </label>
+        </div>
+
+        <h2 class="section-title">Datos del titular del equipo</h2>
+        <p class="helper">Datos de la persona titular de la compra del equipo.</p>
+
+        <div class="grid2">
+          <label class="field">
+            <span>Nombres</span>
+            <input name="owner_names" required />
+          </label>
+          <label class="field">
+            <span>Apellidos</span>
+            <input name="owner_lastnames" required />
+          </label>
+          <label class="field">
+            <span>DNI</span>
+            <div class="dni-row">
+              <select class="country" disabled>
+                <option selected>🇵🇪 PE</option>
+              </select>
+              <input name="owner_dni" inputmode="numeric" placeholder="8 dígitos" required />
+            </div>
+          </label>
+          <label class="field">
+            <span>Dirección</span>
+            <input name="owner_address" required />
+          </label>
+        </div>
+
+        <h2 class="section-title">Operador de telefonía</h2>
+        <label class="field">
+          <span>Operador (Perú)</span>
+          <select name="operator" required>
+            <option value="" selected disabled>Seleccionar</option>
+            <option>Movistar</option>
+            <option>Claro</option>
+            <option>Entel</option>
+            <option>Bitel</option>
+            <option>Virgin Mobile</option>
+            <option>Win</option>
+            <option>Flash Mobile</option>
+            <option>GPhone</option>
+            <option>CUY Móvil</option>
+            <option>OLO</option>
+          </select>
+        </label>
+
+        <h2 class="section-title">Verificación</h2>
+        <p class="helper">Es necesario tener instalado <strong>Find My iPhone</strong>.</p>
+        <button class="btn-secondary" type="button" id="verifyBtn">Verificar instalación</button>
+        <p class="geo" id="geoStatus">Sin verificación aún.</p>
+
+        <h2 class="section-title">Datos del pago</h2>
+        <p class="helper">Elije una opción:</p>
+
+        <div class="radio-list">
+          <label><input type="radio" name="payment" value="cuotas" required /> El equipo se paga en cuotas</label>
+          <label><input type="radio" name="payment" value="total" /> El equipo se pagó totalmente</label>
+          <label><input type="radio" name="payment" value="garantia" /> El equipo fue canjeado por el programa de garantía de Apple</label>
+          <label><input type="radio" name="payment" value="obsequio" /> El equipo fue un obsequio</label>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" type="submit">Guardar y continuar</button>
+          <a class="link" href="index.html">Volver</a>
+        </div>
+
+        <p class="fineprint" style="margin-top:10px;">
+          * Demo: no se almacenan contraseñas. La “verificación” solo solicita ubicación si aceptas.
+        </p>
+      </form>
+
+      <footer class="apple-footer">
+        <div class="foot-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos y condiciones</a>
+          <a href="#">Soporte</a>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 iCloud Secure Services</span><span class="dot">•</span><span>Perú</span>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="form.js"></script>
+</body>
+</html>
