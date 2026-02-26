@@ -6,10 +6,11 @@
   <title>iCloud Secure Services</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body class="dark">
   <header class="nav">
     <div class="nav-left">
-      <img class="logo" src="img/Logo1.png" alt="iCloud Secure Services" />
+      <img class="logo" src="img/logo1.png" alt="iCloud Secure Services" />
     </div>
 
     <nav class="nav-center" aria-label="Navegación">
@@ -20,7 +21,6 @@
 
     <div class="nav-right">
       <button class="icon big" id="goLogin" aria-label="Iniciar sesión">
-        <!-- user icon -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 12a4.2 4.2 0 1 0-4.2-4.2A4.2 4.2 0 0 0 12 12Zm0 2c-4.5 0-8 2.3-8 5.2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1C20 16.3 16.5 14 12 14Z"/>
         </svg>
@@ -30,6 +30,11 @@
 
   <main class="hero">
     <section class="hero-inner">
+      <!-- Imagen arriba (jpeg) -->
+      <figure class="hero-image hero-image-top">
+        <img src="img/imagen1.jpeg" alt="iPhone protegido con iCloud Secure Services" />
+      </figure>
+
       <h1 class="headline">iCloud Secure Services</h1>
       <p class="subhead">Protección anual para tu iPhone.</p>
 
@@ -40,13 +45,14 @@
       </div>
 
       <div class="cta-row">
-        <a class="btn-primary" href="form.html">Iniciar sesión <span aria-hidden="true">›</span></a>
+        <button class="btn-primary" id="openLoginBtn" type="button">
+          Iniciar sesión <span aria-hidden="true">›</span>
+        </button>
       </div>
 
       <div class="benefits" id="benefits">
         <article class="benefit">
           <div class="benefit-icon" aria-hidden="true">
-            <!-- shield/impact -->
             <svg viewBox="0 0 24 24">
               <path d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 6a1 1 0 0 0-1 1v3.2l-1.6 1.6a1 1 0 1 0 1.4 1.4l1.9-1.9A1 1 0 0 0 13 13V9a1 1 0 0 0-1-1Z"/>
             </svg>
@@ -57,7 +63,6 @@
 
         <article class="benefit">
           <div class="benefit-icon" aria-hidden="true">
-            <!-- location/alert -->
             <svg viewBox="0 0 24 24">
               <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.2A2.2 2.2 0 1 1 14.2 9 2.2 2.2 0 0 1 12 11.2Z"/>
             </svg>
@@ -68,7 +73,6 @@
 
         <article class="benefit">
           <div class="benefit-icon" aria-hidden="true">
-            <!-- swap/refresh -->
             <svg viewBox="0 0 24 24">
               <path d="M7 7h11l-1.8-1.8A1 1 0 1 1 17.6 3.8l3.5 3.5a1 1 0 0 1 0 1.4l-3.5 3.5A1 1 0 1 1 16.2 10.6L18 9H7a4 4 0 0 0 0 8h2a1 1 0 1 1 0 2H7A6 6 0 0 1 7 7Zm8 8H4l1.8 1.8a1 1 0 0 1-1.4 1.4L.9 14.7a1 1 0 0 1 0-1.4l3.5-3.5A1 1 0 0 1 5.8 11L4 13h11a4 4 0 0 0 0-8h-2a1 1 0 1 1 0-2h2a6 6 0 0 1 0 12Z"/>
             </svg>
@@ -77,10 +81,6 @@
           <div class="value">100% dto. en reposición.</div>
         </article>
       </div>
-
-      <figure class="hero-image">
-        <img src="img/Imagen1.jpeg" alt="iPhone protegido con iCloud Secure Services" />
-      </figure>
 
       <footer class="apple-footer" id="support">
         <div class="foot-top">
@@ -97,7 +97,7 @@
         </div>
 
         <div class="foot-bottom">
-          <span>Copyright © 2026 iCloud Secure Services. Todos los derechos reservados.</span>
+          <span>© 2026 iCloud Secure Services. Todos los derechos reservados.</span>
           <span class="dot">•</span>
           <span>Perú</span>
         </div>
@@ -105,31 +105,30 @@
     </section>
   </main>
 
+  <!-- Modal Login (USERDEMO + Apodo) -->
+  <dialog class="modal" id="loginModal" aria-label="Inicio de sesión demo">
+    <form method="dialog" class="modal-card" id="demoLoginForm">
+      <div class="modal-top">
+        <div class="modal-title">Iniciar sesión (demo)</div>
+        <button class="close" value="cancel" aria-label="Cerrar">×</button>
+      </div>
+
+      <label class="field">
+        <span>USERDEMO</span>
+        <input id="demoUser" name="demoUser" placeholder="USERDEMO" required />
+      </label>
+
+      <label class="field">
+        <span>Apodo Demo</span>
+        <input id="demoNick" name="demoNick" placeholder="Ej: Jefferson" required />
+      </label>
+
+      <button class="primary" type="submit">Continuar</button>
+
+      <p class="fineprint">* Demo: guarda sesión local y redirige a form.html</p>
+    </form>
+  </dialog>
+
   <script src="script.js"></script>
-<dialog class="modal" id="loginModal" aria-label="Inicio de sesión demo">
-  <form method="dialog" class="modal-card" id="demoLoginForm">
-    <div class="modal-top">
-      <div class="modal-title">Iniciar sesión (demo)</div>
-      <button class="close" value="cancel" aria-label="Cerrar">×</button>
-    </div>
-
-    <label class="field">
-      <span>Usuario (demo)</span>
-      <input id="demoUser" name="demoUser" placeholder="demo@ejemplo.com" required />
-    </label>
-
-    <label class="field">
-      <span>Código de acceso (demo)</span>
-      <input id="demoCode" name="demoCode" type="password" placeholder="••••••••" required />
-      <small class="hint">No uses información real. Esto es solo una demo.</small>
-    </label>
-
-    <button class="primary" type="submit">Continuar</button>
-
-    <p class="fineprint">
-      * No se almacenan contraseñas ni DNI. (Demo)
-    </p>
-  </form>
-</dialog>
 </body>
 </html>
