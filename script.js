@@ -5,7 +5,7 @@
 // 🔴 IMPORTANTE:
 // Pega aquí la URL de tu Web App de Google Apps Script
 // Ejemplo: https://script.google.com/macros/s/AKfycbxxxxxxxxxxxx/exec
-const SHEETS_ENDPOINT = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec";
 
 
 // ===============================
