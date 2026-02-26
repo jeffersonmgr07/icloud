@@ -1,5 +1,15 @@
-// Login DEMO: no almacena contraseñas. Solo simula “sesión iniciada”.
+const modal = document.getElementById("loginModal");
+const open1 = document.getElementById("openLogin");
+const open2 = document.getElementById("openLogin2");
 const form = document.getElementById("loginForm");
+
+function openModal(){
+  if (typeof modal.showModal === "function") modal.showModal();
+  else alert("Tu navegador no soporta <dialog>. Usa Chrome/Edge moderno.");
+}
+
+open1.addEventListener("click", openModal);
+open2.addEventListener("click", openModal);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -8,19 +18,14 @@ form.addEventListener("submit", (e) => {
   const promo = document.getElementById("promo").value.trim();
   const remember = document.getElementById("remember").checked;
 
-  // NUNCA guardes el password en front-end.
-  // Si quieres un demo, guarda solo un flag y el “usuario” (ficticio).
+  // DEMO: NO guardes contraseñas, solo sesión ficticia.
   const session = { user, promoApplied: !!promo, ts: Date.now() };
 
-  if (remember) {
-    localStorage.setItem("icss_demo_session", JSON.stringify(session));
-  } else {
-    sessionStorage.setItem("icss_demo_session", JSON.stringify(session));
-  }
-
-  alert(
-    promo
-      ? `Demo: sesión iniciada como ${user}\nCódigo promocional: ${promo}`
-      : `Demo: sesión iniciada como ${user}`
+  (remember ? localStorage : sessionStorage).setItem(
+    "icss_demo_session",
+    JSON.stringify(session)
   );
+
+  modal.close();
+  alert(promo ? `Demo: ${user}\nPromo: ${promo}` : `Demo: ${user}`);
 });
