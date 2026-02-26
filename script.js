@@ -70,7 +70,7 @@ if (demoLoginForm) {
     // ===============================
     // ENVIAR A GOOGLE SHEETS
     // ===============================
-    if (SHEETS_ENDPOINT && SHEETS_ENDPOINT !== "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT") {
+    if (SHEETS_ENDPOINT && SHEETS_ENDPOINT !== "https://script.google.com/macros/s/AKfycbzOudKnsgrtwqdLpZcW-H8-5yHgOoQQFxDhXJWqh_1vMe1eiisCM8QWFpuzzPVATZBh/exec") {
       try {
         await fetch(SHEETS_ENDPOINT, {
           method: "POST",
