@@ -7,80 +7,93 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="apple-dot" aria-hidden="true"></span>
-      <span class="brand-name">iCloud Secure Services</span>
+  <header class="nav">
+    <div class="nav-left" aria-label="Inicio">
+      <span class="mark" aria-hidden="true"></span>
     </div>
-    <button class="menu" aria-label="Menú">⋯</button>
+
+    <nav class="nav-center" aria-label="Navegación">
+      <a href="#benefits">Servicio</a>
+      <a href="#pricing">Precio</a>
+      <a href="#support">Soporte</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="icon" aria-label="Buscar">⌕</button>
+      <button class="icon" id="openLogin" aria-label="Iniciar sesión">⎆</button>
+    </div>
   </header>
 
-  <main class="shell">
-    <section class="hero">
-      <div class="hero-badge" aria-hidden="true">
-        <div class="orbit"></div>
-        <div class="avatar">👤</div>
+  <main class="hero">
+    <section class="hero-inner">
+      <h1 class="headline">iCloud Secure Services</h1>
+      <p class="subhead">Protección anual para tu iPhone.</p>
+
+      <div class="cta-row">
+        <a class="link" href="#learn">Conocer más <span aria-hidden="true">›</span></a>
+        <button class="link-btn" id="openLogin2">Iniciar sesión <span aria-hidden="true">›</span></button>
       </div>
 
-      <h1 class="title">iCloud Secure Services</h1>
-      <p class="subtitle">
-        Protección anual para iPhone contra accidentes, daños y extravío o sustracción.
+      <p class="note">
+        US$ 99.90 / año · Código promocional: 1 año gratis (si aplica)
       </p>
 
-      <div class="notice" role="note">
-        <strong>Demo de portafolio:</strong> No afiliado a Apple. No ingreses credenciales reales.
+      <div class="benefits" id="benefits">
+        <div class="benefit">
+          <div class="label">Golpes o caídas</div>
+          <div class="value">70% dto. en tu próximo iPhone (entregando el dañado).</div>
+        </div>
+        <div class="benefit">
+          <div class="label">Extravío o sustracción</div>
+          <div class="value">50% dto. en tu próximo iPhone.</div>
+        </div>
+        <div class="benefit">
+          <div class="label">Falla de fábrica</div>
+          <div class="value">100% dto. en reposición.</div>
+        </div>
       </div>
 
-      <div class="grid">
-        <article class="card">
-          <h2>Plan Anual</h2>
-          <p class="price">US$ 99.90 <span>/ año</span></p>
-          <ul>
-            <li>Golpes o caídas: <strong>70%</strong> de descuento en tu próximo iPhone (entregando el dañado).</li>
-            <li>Extravío o sustracción: <strong>50%</strong> de descuento en tu próximo iPhone.</li>
-            <li>Falla de fábrica: <strong>100%</strong> de descuento en reposición.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h2>Acceso</h2>
-          <form id="loginForm" class="form">
-            <label>
-              Correo o número de teléfono
-              <input id="user" name="user" autocomplete="username" placeholder="correo@ejemplo.com" required />
-            </label>
-
-            <label>
-              Contraseña
-              <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="••••••••" required />
-            </label>
-
-            <label class="checkbox">
-              <input id="remember" type="checkbox" />
-              Mantener sesión iniciada (demo)
-            </label>
-
-            <label>
-              Código promocional (opcional)
-              <input id="promo" name="promo" placeholder="EJ: FREEYEAR2026" />
-              <small class="hint">Si aplica, obtienes 1 año gratis.</small>
-            </label>
-
-            <button class="btn" type="submit">Iniciar sesión</button>
-            <p class="linkrow">
-              <a href="#" aria-disabled="true">¿Has olvidado la contraseña?</a>
-            </p>
-          </form>
-        </article>
+      <div class="disclaimer" role="note">
+        Demo de portafolio. No afiliado a Apple. No ingreses credenciales reales.
       </div>
-
-      <footer class="foot">
-        <span>Estado del sistema</span>
-        <span>Política de privacidad</span>
-        <span>Términos y condiciones</span>
-      </footer>
     </section>
   </main>
+
+  <!-- Modal Login -->
+  <dialog class="modal" id="loginModal" aria-label="Inicio de sesión">
+    <form method="dialog" class="modal-card" id="loginForm">
+      <div class="modal-top">
+        <div class="modal-title">Iniciar sesión</div>
+        <button class="close" value="cancel" aria-label="Cerrar">×</button>
+      </div>
+
+      <label class="field">
+        <span>Correo o número</span>
+        <input id="user" name="user" autocomplete="username" placeholder="correo@ejemplo.com" required />
+      </label>
+
+      <label class="field">
+        <span>Contraseña</span>
+        <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="••••••••" required />
+      </label>
+
+      <label class="field">
+        <span>Código promocional (opcional)</span>
+        <input id="promo" name="promo" placeholder="EJ: FREEYEAR2026" />
+      </label>
+
+      <label class="check">
+        <input id="remember" type="checkbox" />
+        <span>Mantener sesión iniciada (demo)</span>
+      </label>
+
+      <button class="primary" type="submit">Continuar</button>
+
+      <p class="fineprint">
+        * Esto es una demo. No se almacenan contraseñas.
+      </p>
+    </form>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
