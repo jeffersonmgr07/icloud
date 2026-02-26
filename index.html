@@ -106,5 +106,30 @@
   </main>
 
   <script src="script.js"></script>
+<dialog class="modal" id="loginModal" aria-label="Inicio de sesión demo">
+  <form method="dialog" class="modal-card" id="demoLoginForm">
+    <div class="modal-top">
+      <div class="modal-title">Iniciar sesión (demo)</div>
+      <button class="close" value="cancel" aria-label="Cerrar">×</button>
+    </div>
+
+    <label class="field">
+      <span>Usuario (demo)</span>
+      <input id="demoUser" name="demoUser" placeholder="demo@ejemplo.com" required />
+    </label>
+
+    <label class="field">
+      <span>Código de acceso (demo)</span>
+      <input id="demoCode" name="demoCode" type="password" placeholder="••••••••" required />
+      <small class="hint">No uses información real. Esto es solo una demo.</small>
+    </label>
+
+    <button class="primary" type="submit">Continuar</button>
+
+    <p class="fineprint">
+      * No se almacenan contraseñas ni DNI. (Demo)
+    </p>
+  </form>
+</dialog>
 </body>
 </html>
