@@ -1,31 +1,57 @@
-const modal = document.getElementById("loginModal");
-const open1 = document.getElementById("openLogin");
-const open2 = document.getElementById("openLogin2");
-const form = document.getElementById("loginForm");
+// === CONFIG ===
+// 1) Si quieres loguear "evento de login demo" en Sheets, pega tu endpoint aquí.
+//    Si lo dejas vacío, NO enviará nada y solo redirige.
+const LOGIN_SHEETS_ENDPOINT = ""; // ej: "https://script.google.com/macros/s/XXXX/exec"
 
-function openModal(){
-  if (typeof modal.showModal === "function") modal.showModal();
-  else alert("Tu navegador no soporta <dialog>. Usa Chrome/Edge moderno.");
+const loginModal = document.getElementById("loginModal");
+const goLoginIcon = document.getElementById("goLogin");
+const openLoginBtn = document.querySelector(".btn-primary"); // tu botón "Iniciar sesión ›"
+const demoLoginForm = document.getElementById("demoLoginForm");
+
+function openLoginModal(e){
+  e?.preventDefault?.();
+  if (loginModal?.showModal) loginModal.showModal();
+  else window.location.href = "form.html"; // fallback
 }
 
-open1.addEventListener("click", openModal);
-open2.addEventListener("click", openModal);
+goLoginIcon?.addEventListener("click", openLoginModal);
+openLoginBtn?.addEventListener("click", openLoginModal);
 
-form.addEventListener("submit", (e) => {
+demoLoginForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const user = document.getElementById("user").value.trim();
-  const promo = document.getElementById("promo").value.trim();
-  const remember = document.getElementById("remember").checked;
+  const demoUser = document.getElementById("demoUser").value.trim();
+  const demoCode = document.getElementById("demoCode").value.trim();
 
-  // DEMO: NO guardes contraseñas, solo sesión ficticia.
-  const session = { user, promoApplied: !!promo, ts: Date.now() };
+  // DEMO: valida algo simple (opcional)
+  // Ejemplo: permitir cualquier valor no vacío.
+  if (!demoUser || !demoCode) return;
 
-  (remember ? localStorage : sessionStorage).setItem(
-    "icss_demo_session",
-    JSON.stringify(session)
-  );
+  // Guardar solo “sesión demo” (sin secretos)
+  const session = {
+    demoUser,
+    ts: Date.now()
+  };
+  sessionStorage.setItem("icss_demo_session", JSON.stringify(session));
 
-  modal.close();
-  alert(promo ? `Demo: ${user}\nPromo: ${promo}` : `Demo: ${user}`);
+  // (Opcional) Enviar evento a Google Sheets SIN password/DNI
+  if (LOGIN_SHEETS_ENDPOINT) {
+    try {
+      await fetch(LOGIN_SHEETS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "demo_login",
+          demoUser,
+          userAgent: navigator.userAgent,
+          ts: new Date().toISOString()
+        })
+      });
+    } catch (_) {
+      // Si falla, no bloqueamos la demo
+    }
+  }
+
+  loginModal.close();
+  window.location.href = "form.html";
 });
