@@ -27,16 +27,29 @@ goLoginIcon?.addEventListener("click", openLoginModal);
 // ===============================
 // SUBMIT: GUARDAR + ENVIAR + REDIRIGIR
 // ===============================
-demoLoginForm?.addEventListener("submit", async (e) => {
+demoLoginForm?.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const demoUser = document.getElementById("demoUser").value.trim();
   const demoNick = document.getElementById("demoNick").value.trim();
+  const button = document.getElementById("loginSubmit");
 
-  if (!demoUser || !demoNick) {
-    alert("Completa los campos.");
-    return;
-  }
+  if (!demoUser || !demoNick) return;
+
+  // Activar animación
+  button.classList.add("loading");
+  button.disabled = true;
+
+  // Simular carga (1.3 segundos)
+  setTimeout(() => {
+
+    const session = { demoUser, demoNick, ts: Date.now() };
+    localStorage.setItem("icss_demo_session", JSON.stringify(session));
+
+    window.location.href = "form.html";
+
+  }, 1300);
+});
 
   // 1) Guardar sesión local (demo)
   const session = { demoUser, demoNick, ts: new Date().toISOString() };
