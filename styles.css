@@ -390,3 +390,26 @@ body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, 
     transform: translateY(0) scale(1);
   }
 }
+.password-wrapper{
+  position:relative;
+}
+
+.password-wrapper input{
+  padding-right:40px;
+}
+
+.toggle-visibility{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  opacity:.7;
+}
+
+.toggle-visibility:hover{
+  opacity:1;
+}
