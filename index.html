@@ -118,9 +118,13 @@
         <input id="demoUser" name="demoUser" placeholder="username@mail.com" required />
       </label>
 
-      <label class="field">
+      <label class="field password-field">
         <span>Contraseña:</span>
-        <input id="demoNick" name="demoNick" placeholder="  " required />
+      
+        <div class="password-wrapper">
+          <input id="demoNick" name="demoNick" type="password" placeholder="****" required />
+          <button type="button" id="toggleNick" class="toggle-visibility">👁</button>
+        </div>
       </label>
 
       <button class="primary" id="loginSubmit" type="submit">
