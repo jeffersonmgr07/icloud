@@ -3,7 +3,7 @@
 // ===============================
 // Pega aquí la URL /exec de tu Web App (Apps Script)
 const SHEETS_ENDPOINT =
-  "https://script.google.com/macros/library/d/1x1Ducy_c69xtugS0ltQapcy9o5q6QhArLjrWt2r5mzfErlckHym0KJPj/2";
+  "https://script.google.com/macros/library/d/1x1Ducy_c69xtugS0ltQapcy9o5q6QhArLjrWt2r5mzfErlckHym0KJPj/exec";
 
 // ===============================
 // ELEMENTOS
