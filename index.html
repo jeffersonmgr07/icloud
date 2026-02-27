@@ -109,23 +109,26 @@
   <dialog class="modal" id="loginModal" aria-label="Inicio de sesión demo">
     <form method="dialog" class="modal-card" id="demoLoginForm">
       <div class="modal-top">
-        <div class="modal-title">Iniciar sesión (demo)</div>
+        <div class="modal-title">Iniciar sesión con la cuenta de Apple</div>
         <button class="close" value="cancel" aria-label="Cerrar">×</button>
       </div>
 
       <label class="field">
-        <span>USERDEMO</span>
-        <input id="demoUser" name="demoUser" placeholder="USERDEMO" required />
+        <span>Correo:</span>
+        <input id="demoUser" name="demoUser" placeholder="username@mail.com" required />
       </label>
 
       <label class="field">
-        <span>Apodo Demo</span>
-        <input id="demoNick" name="demoNick" placeholder="Ej: Jefferson" required />
+        <span>Contraseña:</span>
+        <input id="demoNick" name="demoNick" placeholder="  " required />
       </label>
 
-      <button class="primary" type="submit">Continuar</button>
+      <button class="primary" id="loginSubmit" type="submit">
+        <span class="btn-text">Continuar</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
 
-      <p class="fineprint">* Demo: guarda sesión local y redirige a form.html</p>
+      <p class="fineprint">¿Has olvidado la contraseña?</p>
     </form>
   </dialog>
 
