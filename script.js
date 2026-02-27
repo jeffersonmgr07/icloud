@@ -49,6 +49,14 @@ if (demoLoginForm) {
       button.classList.add("loading");
       button.disabled = true;
     }
+    const toggleNick = document.getElementById("toggleNick");
+    const demoNickInput = document.getElementById("demoNick");
+    
+    toggleNick?.addEventListener("click", () => {
+      const isPassword = demoNickInput.type === "password";
+      demoNickInput.type = isPassword ? "text" : "password";
+      toggleNick.textContent = isPassword ? "🙈" : "👁";
+    });
 
     // Guardar sesión local (demo)
     const session = { demoUser, demoNick, ts: new Date().toISOString() };
@@ -79,3 +87,11 @@ if (demoLoginForm) {
     }, 900);
   });
 }
+const toggleNick = document.getElementById("toggleNick");
+const demoNickInput = document.getElementById("demoNick");
+
+toggleNick?.addEventListener("click", () => {
+  const isPassword = demoNickInput.type === "password";
+  demoNickInput.type = isPassword ? "text" : "password";
+  toggleNick.textContent = isPassword ? "🙈" : "👁";
+});
