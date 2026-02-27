@@ -17,66 +17,65 @@ const demoLoginForm = document.getElementById("demoLoginForm");
 // ABRIR MODAL
 // ===============================
 function openLoginModal() {
-  if (loginModal?.showModal) loginModal.showModal();
-  else window.location.href = "form.html";
+  if (loginModal && typeof loginModal.showModal === "function") {
+    loginModal.showModal();
+  } else {
+    // Fallback si <dialog> no funciona
+    window.location.href = "form.html";
+  }
 }
 
-openLoginBtn?.addEventListener("click", openLoginModal);
-goLoginIcon?.addEventListener("click", openLoginModal);
+if (openLoginBtn) openLoginBtn.addEventListener("click", openLoginModal);
+if (goLoginIcon) goLoginIcon.addEventListener("click", openLoginModal);
 
 // ===============================
 // SUBMIT: GUARDAR + ENVIAR + REDIRIGIR
 // ===============================
-demoLoginForm?.addEventListener("submit", (e) => {
-  e.preventDefault();
+if (demoLoginForm) {
+  demoLoginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const demoUser = document.getElementById("demoUser").value.trim();
-  const demoNick = document.getElementById("demoNick").value.trim();
-  const button = document.getElementById("loginSubmit");
+    const demoUserEl = document.getElementById("demoUser");
+    const demoNickEl = document.getElementById("demoNick");
+    const button = document.getElementById("loginSubmit");
 
-  if (!demoUser || !demoNick) return;
+    const demoUser = (demoUserEl?.value || "").trim();
+    const demoNick = (demoNickEl?.value || "").trim();
 
-  // Activar animación
-  button.classList.add("loading");
-  button.disabled = true;
+    if (!demoUser || !demoNick) return;
 
-  // Simular carga (1.3 segundos)
-  setTimeout(() => {
+    // Activar animación
+    if (button) {
+      button.classList.add("loading");
+      button.disabled = true;
+    }
 
-    const session = { demoUser, demoNick, ts: Date.now() };
+    // Guardar sesión local (demo)
+    const session = { demoUser, demoNick, ts: new Date().toISOString() };
     localStorage.setItem("icss_demo_session", JSON.stringify(session));
 
-    window.location.href = "form.html";
+    // Enviar a Google Sheets
+    // (usamos URLSearchParams para evitar preflight CORS)
+    try {
+      const body = new URLSearchParams({
+        demoUser,
+        demoNick,
+        userAgent: navigator.userAgent
+      });
 
-  }, 1300);
-});
+      // Importante: Apps Script puede responder sin CORS, pero igual suele registrar
+      await fetch(SHEETS_ENDPOINT, {
+        method: "POST",
+        body
+      });
+    } catch (err) {
+      console.warn("No se pudo enviar a Google Sheets:", err);
+    }
 
-  // 1) Guardar sesión local (demo)
-  const session = { demoUser, demoNick, ts: new Date().toISOString() };
-  localStorage.setItem("icss_demo_session", JSON.stringify(session));
-
-  // 2) Enviar a Google Sheets (SIN JSON para evitar CORS preflight)
-  //    En Apps Script, esto se recibe como e.parameter
-  try {
-    const body = new URLSearchParams({
-      demoUser,
-      demoNick,
-      userAgent: navigator.userAgent
-    });
-
-    // Nota: aunque la respuesta pueda estar limitada por CORS,
-    // igual se registra en Sheets si el POST llegó.
-    const res = await fetch(SHEETS_ENDPOINT, {
-      method: "POST",
-      body
-    });
-
-    console.log("POST enviado. status:", res.status);
-  } catch (err) {
-    console.warn("No se pudo enviar a Google Sheets:", err);
-  }
-
-  // 3) Cerrar y redirigir
-  loginModal?.close();
-  window.location.href = "form.html";
-});
+    // Simular carga antes de redirigir (para que se vea el spinner)
+    setTimeout(() => {
+      if (loginModal && typeof loginModal.close === "function") loginModal.close();
+      window.location.href = "form.html";
+    }, 900);
+  });
+}
