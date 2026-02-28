@@ -36,7 +36,7 @@ try {
   }
 } catch {
   session = null;
-  if (hello) hello.textContent = "Sesión demo inválida.";
+  if (hello) hello.textContent = "Sesión inválida.";
 }
 
 // Verificación ubicación (demo)
@@ -65,7 +65,7 @@ verifyBtn?.addEventListener("click", () => {
     },
     () => {
       geoPayload = null;
-      geoStatus.textContent = "Permiso de ubicación denegado.";
+      geoStatus.textContent = "Intentar nuevamente.";
       setVerifyIcon("deny");
     },
     { enableHighAccuracy: true, timeout: 10000 }
