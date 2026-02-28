@@ -32,7 +32,7 @@ try {
   session = rawSession ? JSON.parse(rawSession) : null;
   if (hello) {
     const name = session?.demoUser || session?.demoUser || "Usuario";
-    hello.textContent = `Hola, ${name} (demo)`;
+    hello.textContent = `Hola, ${name}`;
   }
 } catch {
   session = null;
