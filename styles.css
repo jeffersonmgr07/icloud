@@ -435,3 +435,34 @@ body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, 
   height:28px;
   display:none; /* se muestra desde JS */
 }
+.verify-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:0 18px;
+  height:46px;
+  border-radius:999px;
+  border:0;
+  background: linear-gradient(135deg,#0a84ff,#0066ff);
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  transition: all .25s ease;
+  box-shadow: 0 8px 20px rgba(0,118,255,.25);
+}
+
+.verify-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,118,255,.35);
+}
+
+.verify-btn:active{
+  transform: scale(.98);
+}
+
+.verify-icon-svg{
+  width:16px;
+  height:16px;
+  fill:white;
+}
