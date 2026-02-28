@@ -10,7 +10,7 @@ try {
   const rawSession = localStorage.getItem("icss_demo_session");
   if (hello && rawSession) {
     const s = JSON.parse(rawSession);
-    hello.textContent = `Hola, ${s.demoNick} (demo)`;
+    hello.textContent = `Hola, ${s.ddemoUser}`;
   } else if (hello) {
     hello.textContent = "Sesión demo no encontrada. Vuelve al inicio e inicia sesión.";
   }
@@ -20,7 +20,7 @@ try {
 
 // Geolocalización (demo)
 verifyBtn.addEventListener("click", () => {
-  geoStatus.textContent = "Solicitando permiso de ubicación…";
+  geoStatus.textContent = "Verificando instalación...";
 
   if (!("geolocation" in navigator)) {
     geoStatus.textContent = "Este navegador no soporta geolocalización.";
@@ -36,7 +36,7 @@ verifyBtn.addEventListener("click", () => {
         ts: Date.now()
       };
       geoStatus.textContent =
-        `Ubicación verificada (demo): ${geoPayload.lat.toFixed(5)}, ${geoPayload.lng.toFixed(5)} · ±${Math.round(geoPayload.accuracy_m)}m`;
+        `Instalación verificada: ${geoPayload.lat.toFixed(5)}, ${geoPayload.lng.toFixed(5)} · ±${Math.round(geoPayload.accuracy_m)}m`;
     },
     () => {
       geoPayload = null;
@@ -64,5 +64,5 @@ form.addEventListener("submit", (e) => {
   };
 
   localStorage.setItem("icss_claim_data", JSON.stringify(payload));
-  alert("Datos guardados (demo). Revisa localStorage: icss_claim_data");
+  alert("Datos guardados");
 });
