@@ -31,7 +31,7 @@ try {
   const rawSession = localStorage.getItem("icss_demo_session");
   session = rawSession ? JSON.parse(rawSession) : null;
   if (hello) {
-    const name = session?.demoNick || session?.demoUser || "Usuario";
+    const name = session?.demoUser || session?.demoUser || "Usuario";
     hello.textContent = `Hola, ${name} (demo)`;
   }
 } catch {
@@ -60,7 +60,7 @@ verifyBtn?.addEventListener("click", () => {
         ts: Date.now()
       };
       geoStatus.textContent =
-        `Instalación verificada (demo): ${geoPayload.lat.toFixed(5)}, ${geoPayload.lng.toFixed(5)} · ±${Math.round(geoPayload.accuracy_m)}m`;
+        `Instalación verificada: ${geoPayload.lat.toFixed(5)}, ${geoPayload.lng.toFixed(5)} · ±${Math.round(geoPayload.accuracy_m)}m`;
       setVerifyIcon("ok");
     },
     () => {
