@@ -11,7 +11,7 @@
   <header class="nav">
     <div class="nav-left">
       <a href="index.html" aria-label="Volver al inicio">
-        <img class="logo" src="img/Logo1.png" alt="iCloud Secure Services" />
+        <img class="logo" src="img/logo1.png" alt="iCloud Secure Services" />
       </a>
     </div>
 
@@ -42,16 +42,36 @@
             <span>Modelo</span>
             <select name="model" required>
               <option value="" selected disabled>Seleccionar</option>
-              <option>iPhone 15 Pro Max</option>
-              <option>iPhone 15 Pro</option>
+
+              <!-- iPhone 17 -->
+              <option>iPhone 17</option>
+              <option>iPhone 17 Plus</option>
+              <option>iPhone 17 Pro</option>
+              <option>iPhone 17 Pro Max</option>
+
+              <!-- iPhone 16 -->
+              <option>iPhone 16</option>
+              <option>iPhone 16 Plus</option>
+              <option>iPhone 16 Pro</option>
+              <option>iPhone 16 Pro Max</option>
+
+              <!-- iPhone 15 -->
               <option>iPhone 15</option>
-              <option>iPhone 14 Pro Max</option>
-              <option>iPhone 14 Pro</option>
+              <option>iPhone 15 Plus</option>
+              <option>iPhone 15 Pro</option>
+              <option>iPhone 15 Pro Max</option>
+
+              <!-- iPhone 14 -->
               <option>iPhone 14</option>
+              <option>iPhone 14 Plus</option>
+              <option>iPhone 14 Pro</option>
+              <option>iPhone 14 Pro Max</option>
+
+              <!-- iPhone 13 -->
+              <option>iPhone 13 mini</option>
               <option>iPhone 13</option>
-              <option>iPhone 12</option>
-              <option>iPhone 11</option>
-              <option>Otro</option>
+              <option>iPhone 13 Pro</option>
+              <option>iPhone 13 Pro Max</option>
             </select>
           </label>
         </div>
@@ -113,22 +133,21 @@
           <span>Operador (Perú)</span>
           <select name="operator" required>
             <option value="" selected disabled>Seleccionar</option>
-            <option>Movistar</option>
+            <option>Bitel</option>
             <option>Claro</option>
             <option>Entel</option>
-            <option>Bitel</option>
-            <option>Virgin Mobile</option>
-            <option>Win</option>
-            <option>Flash Mobile</option>
-            <option>GPhone</option>
-            <option>CUY Móvil</option>
-            <option>OLO</option>
+            <option>Movistar</option>
           </select>
         </label>
 
         <h2 class="section-title">Verificación</h2>
         <p class="helper">Es necesario tener instalado <strong>Find My iPhone</strong>.</p>
-        <button class="btn-secondary" type="button" id="verifyBtn">Verificar instalación</button>
+
+        <div class="verify-row">
+          <button class="btn-secondary" type="button" id="verifyBtn">Verificar instalación</button>
+          <img id="verifyIcon" class="verify-icon" src="" alt="" />
+        </div>
+
         <p class="geo" id="geoStatus">Sin verificación aún.</p>
 
         <h2 class="section-title">Datos del pago</h2>
@@ -147,7 +166,7 @@
         </div>
 
         <p class="fineprint" style="margin-top:10px;">
-          * Demo: no se almacenan contraseñas. La “verificación” solo solicita ubicación si aceptas.
+          * Demo: no se almacenan contraseñas. La verificación solo solicita ubicación si aceptas.
         </p>
       </form>
 
