@@ -94,9 +94,16 @@ if (demoLoginForm) {
 }
 const toggleNick = document.getElementById("toggleNick");
 const demoNickInput = document.getElementById("demoNick");
+const eyeOpen = document.getElementById("eyeOpen");
+const eyeClosed = document.getElementById("eyeClosed");
 
 toggleNick?.addEventListener("click", () => {
   const isPassword = demoNickInput.type === "password";
+
   demoNickInput.type = isPassword ? "text" : "password";
-  toggleNick.textContent = isPassword ? "🙈" : "👁";
+
+  if (eyeOpen && eyeClosed) {
+    eyeOpen.style.display = isPassword ? "none" : "block";
+    eyeClosed.style.display = isPassword ? "block" : "none";
+  }
 });
