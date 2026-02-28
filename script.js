@@ -51,11 +51,16 @@ if (demoLoginForm) {
     }
     const toggleNick = document.getElementById("toggleNick");
     const demoNickInput = document.getElementById("demoNick");
+    const eyeIcon = document.getElementById("eyeIcon");
     
     toggleNick?.addEventListener("click", () => {
       const isPassword = demoNickInput.type === "password";
       demoNickInput.type = isPassword ? "text" : "password";
-      toggleNick.textContent = isPassword ? "🙈" : "👁";
+    
+      // Cambiar icono
+      eyeIcon.innerHTML = isPassword
+        ? '<path d="M3 3l18 18M12 5c-7 0-10 7-10 7a19 19 0 0 0 5 5m5 2c7 0 10-7 10-7a19 19 0 0 0-5-5"/>' // ojo cerrado
+        : '<path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/>'; // ojo abierto
     });
 
     // Guardar sesión local (demo)
