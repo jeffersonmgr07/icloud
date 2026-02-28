@@ -41,6 +41,7 @@ try {
 
 // Verificación ubicación (demo)
 verifyBtn?.addEventListener("click", () => {
+  verifyBtn.classList.add("loading");
   geoStatus.textContent = "Verificando instalación…";
   setVerifyIcon(null);
 
