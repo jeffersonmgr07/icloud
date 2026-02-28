@@ -413,3 +413,25 @@ body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, 
 .toggle-visibility:hover{
   opacity:1;
 }
+/* Evitar “select en blanco” */
+.field select{
+  background: rgba(255,255,255,.10);
+  color: var(--text);
+}
+.field select option{
+  background: #111;   /* color del desplegable */
+  color: #fff;
+}
+
+/* Verificación con icono */
+.verify-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:6px;
+}
+.verify-icon{
+  width:28px;
+  height:28px;
+  display:none; /* se muestra desde JS */
+}
